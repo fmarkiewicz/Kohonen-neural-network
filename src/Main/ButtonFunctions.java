@@ -5,8 +5,6 @@
  */
 package Main;
 
-import Main.Sketch.MyButton;
-
 /**
  *
  * @author Yumis
@@ -14,11 +12,18 @@ import Main.Sketch.MyButton;
 public class ButtonFunctions {
 
     public void learn() {
-        System.out.println("learn");
+        System.out.println("uczy");
     }
 
     public void answer() {
-        System.out.println("answer");
+        System.out.println("odpowiada");
+    }
+    
+    public void random() {
+        System.out.println("losuje");
     }
 
+    public void clear() {
+        System.out.println("czysci");
+    }
 }

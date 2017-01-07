@@ -33,7 +33,9 @@ public class Sketch extends PApplet {
         textSize(25);
 
         buttonList.add(new MyButton("learn"));
+        buttonList.add(new MyButton("random"));
         buttonList.add(new MyButton("answer"));
+        buttonList.add(new MyButton("clear"));
 
         for (int i = 0; i < buttonList.size(); i++) {
             MyButton but = buttonList.get(i);
