@@ -18,17 +18,7 @@ public class ButtonFunctions {
     }
 
     public void answer() {
-        System.out.println("asnwer");
-    }
-
-    
-    public boolean btnClicked(MyButton button, int mouseX, int mouseY) {
-        return isOverRec(button.x, button.y, button.width, button.height, mouseX, mouseY);
-    }
-
-    public boolean isOverRec(int x, int y, int width, int height, int mouseX, int mouseY) {
-        return mouseX > x && mouseX < x + width
-                && mouseY > y && mouseY < y + height;
+        System.out.println("answer");
     }
 
 }

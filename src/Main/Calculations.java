@@ -14,4 +14,9 @@ public class Calculations {
     public static int signum(double sum) {
         return sum > 0 ? 1 : -1;
     }
+
+    public static boolean isOverRec(int x, int y, int width, int height, int mouseX, int mouseY) {
+        return mouseX > x && mouseX < x + width
+                && mouseY > y && mouseY < y + height;
+    }
 }
