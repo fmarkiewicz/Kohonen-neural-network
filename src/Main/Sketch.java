@@ -13,7 +13,7 @@ import processing.core.PApplet;
 public class Sketch extends PApplet {
 
     static int graphPointsAmount = 15;
-    static int T = 5500;
+    static int T = 100000;
 
     int buttonsX = 10;
     int buttonsY = 500;
@@ -39,9 +39,8 @@ public class Sketch extends PApplet {
     public void setup() {
         textSize(25);
 
-        buttonList.add(new MyButton("learn", this));
         buttonList.add(new MyButton("random", this));
-        buttonList.add(new MyButton("answer", this));
+        buttonList.add(new MyButton("start", this));
         buttonList.add(new MyButton("clear", this));
 
         for (int i = 0; i < buttonList.size(); i++) {
@@ -90,9 +89,13 @@ public class Sketch extends PApplet {
                     but.func();
                     but.displayClicked();
 
-                    if (but.funcName.equals("random")) {
+                    if (but.funcName.equals("random") || but.funcName.equals("start")) {
                         // cause I have to manualy pass "this" instance to 
                         // graph points to display it
+                        Sketch.fieldList.get(0).display();
+                        for (MyCircle c : Sketch.dotList) {
+                            c.display();
+                        }
                         drawGraph();
                     }
 //                    break;

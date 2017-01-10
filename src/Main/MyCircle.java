@@ -14,12 +14,21 @@ import processing.core.PApplet;
 public class MyCircle {
 
     PApplet aplet;
-    int x;
-    int y;
+    float x;
+    float y;
     int radius;
     int color;
 
-    public MyCircle(PApplet aplet, int x, int y, int radius, int color) {
+    public float distance(MyCircle otherPoint){
+        return ((this.x - otherPoint.x)*(this.x - otherPoint.x)) + ((this.y - otherPoint.y)*(this.y - otherPoint.y));
+    }
+    
+    public void update(float alpha, float G, MyCircle otherPoint) {
+        this.x += alpha * G * (otherPoint.x - this.x);
+        this.y += alpha * G * (otherPoint.y - this.y);
+    }
+    
+    public MyCircle(PApplet aplet, float x, float y, int radius, int color) {
         this.aplet = aplet;
         this.x = x;
         this.y = y;
@@ -27,7 +36,7 @@ public class MyCircle {
         this.color = color;
     }
 
-    public MyCircle( int x, int y, int radius, int color) {
+    public MyCircle(float x, float y, int radius, int color) {
         this.x = x;
         this.y = y;
         this.radius = radius;

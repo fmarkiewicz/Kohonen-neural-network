@@ -13,12 +13,40 @@ import java.util.Random;
  */
 public class ButtonFunctions {
 
-    public void learn() {
-        System.out.println("uczy");
-    }
+    public void start() {
+        int T = Sketch.T;
+        Random rand = new Random();
+        for (float i = 0; i < T; i++) {
+            int randomPoint = rand.nextInt(Sketch.dotList.size());
+            MyCircle currentExample = Sketch.dotList.get(randomPoint);
+            float currentDistance = Sketch.graphList.get(0).distance(currentExample);
 
-    public void answer() {
-        System.out.println("odpowiada");
+            int itTmp = 0;
+            float distanceTmp = 0;
+
+            for (int itWeight = 0; itWeight < Sketch.graphList.size(); itWeight++) {
+                
+                distanceTmp = Sketch.graphList.get(itWeight).distance(currentExample);
+                if (distanceTmp < currentDistance) {
+                    currentDistance = distanceTmp;
+                    itTmp = itWeight;
+                }
+
+                for (float it = 0; it < 2; it++) {
+                    float neighbourOrSelf = 1/(it + 1);
+//                    System.out.println(neighbourOrSelf);
+                    if (itTmp + it < Sketch.graphPointsAmount) {
+                        Sketch.graphList.get(itTmp + (int)it).update(Calculations.alpha(i, T), neighbourOrSelf, currentExample);
+                    }
+                    if (itTmp - it >= 0) {
+                        Sketch.graphList.get(itTmp - (int)it).update(Calculations.alpha(i, T), neighbourOrSelf, currentExample);
+                    }
+                }
+            }
+
+        }
+        
+        
     }
 
     public void random() {
@@ -28,10 +56,7 @@ public class ButtonFunctions {
         int radius = 6;
 
         Sketch.graphList.clear();
-        Sketch.fieldList.get(0).display();
-        for (MyCircle c : Sketch.dotList) {
-            c.display();
-        }
+        
 
         for (int i = 0; i < Sketch.graphPointsAmount; i++) {
             int x = rand.nextInt(Sketch.FIELD_WIDTH);
